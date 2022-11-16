@@ -9,7 +9,11 @@ app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 app.post("/auth/signin", (req, res) => {
   console.log(req.body);
   const { email, password } = req.body;
-  const user = users.find((user) => user.email === email && password === email);
+  console.log(users);
+  const user = users.find(
+    (user) => user.email === email && password === password
+  );
+  console.log(user);
   if (user) {
     return res.status(200).json({
       email: user.email,

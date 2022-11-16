@@ -33,6 +33,11 @@ const useAuth = () => {
             localStorage.removeItem("user");
           });
       },
+      logout: () => {
+        setUser(null);
+        localStorage.removeItem("user");
+        return Promise.resolve();
+      },
     }),
     [user]
   );

@@ -9,6 +9,9 @@ export const AuthContext = createContext<AuthUtilities>({
   signup(dto) {
     return Promise.resolve();
   },
+  logout() {
+    return Promise.resolve();
+  },
 });
 
 export const useAuthContext = () => useContext(AuthContext);

@@ -5,7 +5,7 @@ const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
   isActive ? "" : "text-gray-600";
 
 const NavBar = () => {
-  const { user } = useAuthContext();
+  const { user, logout } = useAuthContext();
   return (
     <nav className="flex gap-4 ml-auto items-center text-xl">
       <NavLink to={"/"} end className={getNavLinkClass}>
@@ -16,7 +16,9 @@ const NavBar = () => {
           <NavLink to={"/about"} className={getNavLinkClass}>
             About
           </NavLink>
-          <p className="text-red-700">Logout</p>
+          <p className="text-red-700 cursor-pointer" onClick={logout}>
+            Logout
+          </p>
         </>
       )}
       {!user && (

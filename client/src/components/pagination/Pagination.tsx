@@ -46,5 +46,5 @@ export default Pagination;
 
 const getSelectorClasses = (active: boolean) =>
   active
-    ? "rounded-sm bg-gray-200 p-1 cursor-pointer"
-    : "rounded-sm bg-gray-200 p-1 opacity-75 pointer-events-none";
+    ? "rounded-sm bg-gray-200 px-2 py-1 cursor-pointer"
+    : "rounded-sm bg-gray-200 px-2 py-1 opacity-75 pointer-events-none";

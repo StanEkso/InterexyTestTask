@@ -9,7 +9,7 @@ import HeroDetailsPage, {
   heroDetailsLoader,
 } from "./pages/hero/HeroDetailsPage";
 import HomePage from "./pages/home/HomePage";
-import NotFoundPage from "./pages/notfound/NotFoundPage";
+import NotFoundPage, { NotFoundRedirect } from "./pages/notfound/NotFoundPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/hero/:id",
+        errorElement: <NotFoundRedirect />,
         element: <HeroDetailsPage />,
         loader: heroDetailsLoader,
       },

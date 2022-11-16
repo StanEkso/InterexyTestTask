@@ -11,6 +11,7 @@ import HeroDetailsPage, {
 } from "./pages/hero/HeroDetailsPage";
 import HomePage from "./pages/home/HomePage";
 import NotFoundPage, { NotFoundRedirect } from "./pages/notfound/NotFoundPage";
+import SignUpPage from "./pages/signup/SignUpPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         errorElement: <NotFoundRedirect />,
         element: <HeroDetailsPage />,
         loader: heroDetailsLoader,
+      },
+      {
+        path: "/signup",
+        element: <SignUpPage />,
       },
       {
         path: "/404",

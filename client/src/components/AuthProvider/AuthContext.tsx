@@ -3,7 +3,10 @@ import { AuthUtilities } from "../../types/auth";
 
 export const AuthContext = createContext<AuthUtilities>({
   user: null,
-  login(dto) {
+  signin(dto) {
+    return Promise.resolve();
+  },
+  signup(dto) {
     return Promise.resolve();
   },
 });

@@ -1,6 +1,7 @@
 export interface AuthUtilities {
   user: User | null;
-  login: (dto: UserLoginDto) => Promise<void>;
+  signin: (dto: UserLoginDto) => Promise<void>;
+  signup: (dto: UserCreationDto) => Promise<void>;
 }
 
 export interface User {
@@ -11,4 +12,9 @@ export interface User {
 export interface UserLoginDto {
   email: string;
   password: string;
+}
+export interface UserCreationDto {
+  email: string;
+  password: string;
+  bio: string;
 }

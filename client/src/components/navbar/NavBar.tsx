@@ -19,6 +19,16 @@ const NavBar = () => {
           <p className="text-red-700">Logout</p>
         </>
       )}
+      {!user && (
+        <>
+          <NavLink to={"/signin"} className={getNavLinkClass}>
+            Sign In
+          </NavLink>
+          <NavLink to={"/signup"} className={getNavLinkClass}>
+            Sign Up
+          </NavLink>
+        </>
+      )}
     </nav>
   );
 };

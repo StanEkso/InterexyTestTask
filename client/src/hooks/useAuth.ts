@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { createUser, loginUser } from "../api/auth";
 import { AuthUtilities, User } from "../types/auth";
 
 const useAuth = () => {
@@ -10,9 +11,27 @@ const useAuth = () => {
   const value = useMemo<AuthUtilities>(
     () => ({
       user,
-      login: (dto) => {
-        setUser(null);
-        return Promise.resolve();
+      signin: (dto) => {
+        return loginUser(dto)
+          .then((user) => {
+            setUser(user);
+            localStorage.setItem("user", JSON.stringify(user));
+          })
+          .catch(() => {
+            setUser(null);
+            localStorage.removeItem("user");
+          });
+      },
+      signup: (dto) => {
+        return createUser(dto)
+          .then((user) => {
+            setUser(user);
+            localStorage.setItem("user", JSON.stringify(user));
+          })
+          .catch(() => {
+            setUser(null);
+            localStorage.removeItem("user");
+          });
       },
     }),
     [user]

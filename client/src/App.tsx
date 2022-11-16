@@ -5,7 +5,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Layout from "./components/layout/Layout";
-import HeroDetailsPage from "./pages/hero/HeroDetailsPage";
+import HeroDetailsPage, {
+  heroDetailsLoader,
+} from "./pages/hero/HeroDetailsPage";
 import HomePage from "./pages/home/HomePage";
 import NotFoundPage from "./pages/notfound/NotFoundPage";
 const router = createBrowserRouter([
@@ -21,6 +23,7 @@ const router = createBrowserRouter([
       {
         path: "/hero/:id",
         element: <HeroDetailsPage />,
+        loader: heroDetailsLoader,
       },
       {
         path: "/404",

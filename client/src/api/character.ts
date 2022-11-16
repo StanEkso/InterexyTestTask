@@ -9,6 +9,17 @@ export const getCharacters = async (page = 1): Promise<Info<Character[]>> => {
     );
     setTimeout(() => {
       res(a);
+    }, 0);
+  });
+};
+
+export const getCharacterById = async (id: number): Promise<Character> => {
+  return new Promise((res) => {
+    const a = fetch(`${EXTERNAL_API_URL}/character/${id}`).then((r) =>
+      r.json()
+    );
+    setTimeout(() => {
+      res(a);
     }, 5000);
   });
 };

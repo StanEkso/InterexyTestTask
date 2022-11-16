@@ -13,9 +13,9 @@ const CharacterCard: FC<Props> = ({
   species,
 }) => {
   return (
-    <div className="rounded-md border-2 flex overflow-hidden">
-      <div className="max-w-[200px]">
-        <img src={image} alt={name} />
+    <div className="rounded-md border-2 flex overflow-hidden flex-col sm:flex-row">
+      <div className="sm:max-w-[200px]">
+        <img src={image} alt={name} className="w-full" />
       </div>
       <div className="p-2 flex flex-col gap-2">
         <h3 className="text-xl">

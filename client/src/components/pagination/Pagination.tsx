@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 
 interface Props {
   setPage: (n: number) => void;
@@ -13,15 +13,38 @@ const Pagination: FC<Props> = ({
   isNextPageExist,
   isPrevPageExist,
 }) => {
+  const nextPageHandler = useCallback(() => {
+    if (!isNextPageExist) return;
+    setPage(currentPage + 1);
+  }, [isNextPageExist, setPage, currentPage]);
+  const prevPageHandler = useCallback(() => {
+    if (!isPrevPageExist) return;
+    setPage(currentPage - 1);
+  }, [isPrevPageExist, setPage, currentPage]);
   return (
-    <div className="flex gap-1">
-      <div className="rounded-sm bg-gray-200 p-1">{"< "}Prev</div>
+    <div className="flex gap-1 justify-center">
+      <div
+        className={getSelectorClasses(isPrevPageExist)}
+        onClick={prevPageHandler}
+      >
+        {"< "}Prev
+      </div>
       <div className="rounded-sm p-1 border-2 min-w-[32px] text-center">
         {currentPage}
       </div>
-      <div className="rounded-sm bg-gray-200 p-1 ">Next{" >"}</div>
+      <div
+        className={getSelectorClasses(isNextPageExist)}
+        onClick={nextPageHandler}
+      >
+        Next{" >"}
+      </div>
     </div>
   );
 };
 
 export default Pagination;
+
+const getSelectorClasses = (active: boolean) =>
+  active
+    ? "rounded-sm bg-gray-200 p-1 cursor-pointer"
+    : "rounded-sm bg-gray-200 p-1 opacity-75 pointer-events-none";

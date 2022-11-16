@@ -1,0 +1,24 @@
+{
+  "name": "test_task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"cd client && npm run start\" \"cd server && npm run start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StanEkso/IntexeryTestTask.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StanEkso/IntexeryTestTask/issues"
+  },
+  "homepage": "https://github.com/StanEkso/IntexeryTestTask#readme",
+  "dependencies": {
+    "concurrently": "^7.5.0"
+  }
+}

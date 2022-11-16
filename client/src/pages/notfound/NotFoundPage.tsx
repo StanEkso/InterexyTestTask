@@ -3,7 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 
 const NotFoundPage = () => {
   return (
-    <div className="fixed inset-0 flex justify-center items-center">
+    <div className="fixed inset-0 flex justify-center items-center -z-10">
       <div className="">
         <h1 className="text-3xl font-bold">404 | Not Found</h1>
         <p className="text-center text-2xl text-blue-500">

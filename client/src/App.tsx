@@ -4,6 +4,7 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
+import AuthProvider from "./components/AuthProvider/AuthProvider";
 import Layout from "./components/layout/Layout";
 import HeroDetailsPage, {
   heroDetailsLoader,
@@ -38,7 +39,11 @@ const router = createBrowserRouter([
   },
 ]);
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 };
 
 export default App;

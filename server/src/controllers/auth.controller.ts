@@ -12,7 +12,7 @@ class AuthController {
     try {
       const { password, ...user } = await userService.loginUser(dto);
       const accessToken = jwtService.createUserAccessToken(user);
-      return res.status(201).json({
+      return res.status(200).json({
         ...user,
         accessToken,
       });

@@ -13,6 +13,7 @@ class UserService {
     if (existingUser) throw new Error("User with this email exists!");
     const { password, ...user } = dto;
     const hashedPassword = await bcrypt.hash(password, 5);
+    console.log(password);
     const newUser = new User(user.email, hashedPassword, user.bio);
     return this.userRepository.save(newUser);
   }
@@ -21,6 +22,7 @@ class UserService {
     const existingUser = await this.userRepository.findOne({
       where: { email: dto.email },
     });
+    console.log(dto.password);
     const isPasswordsMatch = await bcrypt.compare(
       dto.password,
       existingUser?.password || ""

@@ -36,12 +36,12 @@ const SignUpPage = () => {
           name="password"
         />
         <input
-          type="repeatPassword"
+          type="password"
           className="rounded-sm border-2 py-1 px-2"
           onChange={changeHandler}
           placeholder="Repeat your password"
           required
-          name="password"
+          name="repeatPassword"
         />
         <textarea
           name="bio"

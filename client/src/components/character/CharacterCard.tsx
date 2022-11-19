@@ -19,7 +19,9 @@ const CharacterCard: FC<Props> = ({
       </div>
       <div className="p-2 flex flex-col gap-2">
         <h3 className="text-xl">
-          <Link to={`/hero/${id}`}>{name}</Link>
+          <Link to={`/hero/${id}`} className="hover:text-blue-500">
+            {name}
+          </Link>
         </h3>
         <p>
           Status: <span>{status} </span>

@@ -22,4 +22,9 @@ export const createUser = (dto: UserCreationDto): Promise<User> =>
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((r) => r.json());
+  }).then((r) => {
+    if (r.status !== 201) {
+      throw new Error("");
+    }
+    return r.json();
+  });

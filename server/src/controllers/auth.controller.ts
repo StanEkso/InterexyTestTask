@@ -13,7 +13,7 @@ class AuthController {
       const { password, ...user } = await userService.loginUser(dto);
       const accessToken = jwtService.createUserAccessToken(user);
       return res.status(201).json({
-        user,
+        ...user,
         accessToken,
       });
     } catch (error) {
@@ -30,7 +30,7 @@ class AuthController {
       const { password, ...user } = await userService.createUser(dto);
       const accessToken = jwtService.createUserAccessToken(user);
       return res.status(201).json({
-        user,
+        ...user,
         accessToken,
       });
     } catch (error) {

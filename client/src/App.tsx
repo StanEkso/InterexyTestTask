@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import AuthProvider from "./components/AuthProvider/AuthProvider";
 import Layout from "./components/layout/Layout";
+import NonAuthOnly from "./components/routeGuard/NonAuthOnly";
 import PrivateRoute from "./components/routeGuard/PrivateRoute";
 import AboutUserPage from "./pages/about/AboutUserPage";
 import HeroDetailsPage, {
@@ -41,11 +42,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/signup",
-        element: <SignUpPage />,
+        element: (
+          <NonAuthOnly>
+            <SignUpPage />
+          </NonAuthOnly>
+        ),
       },
       {
         path: "/signin",
-        element: <SignInPage />,
+        element: (
+          <NonAuthOnly>
+            <SignInPage />
+          </NonAuthOnly>
+        ),
       },
       {
         path: "/404",

@@ -11,9 +11,14 @@ const useForm = (defaultValue: Record<string, string> = {}) => {
     },
     []
   );
+  const setError = useCallback(
+    (error: string) => setPayload((payload) => ({ ...payload, error })),
+    []
+  );
   return {
     payload,
     changeHandler,
+    setError,
   };
 };
 

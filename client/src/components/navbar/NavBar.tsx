@@ -7,7 +7,7 @@ const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
 const NavBar = () => {
   const { user, logout } = useAuthContext();
   return (
-    <nav className="flex gap-4 ml-auto items-center text-xl">
+    <nav className="flex gap-3 ml-auto items-center text-md">
       <NavLink to={"/"} end className={getNavLinkClass}>
         Home
       </NavLink>

@@ -6,6 +6,7 @@ export interface AuthUtilities {
 }
 
 export interface User {
+  id: string;
   email: string;
   bio: string;
   accessToken: string;

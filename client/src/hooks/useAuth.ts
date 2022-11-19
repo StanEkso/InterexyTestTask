@@ -20,6 +20,7 @@ const useAuth = () => {
           .catch(() => {
             setUser(null);
             localStorage.removeItem("user");
+            throw new Error("Can't login you with those credentials!");
           });
       },
       signup: (dto) => {
@@ -31,6 +32,7 @@ const useAuth = () => {
           .catch(() => {
             setUser(null);
             localStorage.removeItem("user");
+            throw new Error("Can't register you with this data!");
           });
       },
       logout: () => {

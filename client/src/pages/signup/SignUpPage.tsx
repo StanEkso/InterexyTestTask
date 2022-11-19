@@ -14,9 +14,12 @@ const SignUpPage = () => {
     });
   }, [payload, signup, setError]);
   return (
-    <>
-      <h3>Sign Up</h3>
-      <Form className="flex flex-col gap-2 max-w-xs" onSubmit={submitHandler}>
+    <div className="flex flex-col gap-2">
+      <h3 className="text-center text-3xl font-bold">Sign Up</h3>
+      <Form
+        className="flex flex-col gap-2 max-w-xs mx-auto"
+        onSubmit={submitHandler}
+      >
         {payload.error && <p className="text-red-500">{payload.error} </p>}
 
         <input
@@ -47,19 +50,20 @@ const SignUpPage = () => {
           name="bio"
           className="rounded-sm border-2 py-1 px-2"
           required
+          placeholder="Briefly biography"
           onChange={changeHandler}
         />
         <button type="submit" className="bg-blue-500 py-1 px-2 text-white">
           Sign up
         </button>
       </Form>
-      <p>
+      <p className="text-center">
         Already have an account?{" "}
         <Link to={"../signin"} className="text-blue-500">
           Login here
         </Link>
       </p>
-    </>
+    </div>
   );
 };
 export default SignUpPage;

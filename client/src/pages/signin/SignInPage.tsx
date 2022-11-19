@@ -26,9 +26,12 @@ const SignInPage = () => {
       });
   }, [payload, signin, setError, handleSetRememberedValue]);
   return (
-    <>
-      <h3>Sign In</h3>
-      <Form className="flex flex-col gap-2 max-w-xs" onSubmit={submitHandler}>
+    <div className="flex flex-col gap-2">
+      <h3 className="text-3xl text-center font-bold">Sign In</h3>
+      <Form
+        className="flex flex-col gap-2 max-w-xs mx-auto"
+        onSubmit={submitHandler}
+      >
         {payload.error && <p className="text-red-500">{payload.error} </p>}
         <input
           type="email"
@@ -67,13 +70,13 @@ const SignInPage = () => {
           Sign In
         </button>
       </Form>
-      <p>
+      <p className="text-center">
         Don't have an account?{" "}
         <Link to={"../signup"} className="text-blue-500">
           Register here
         </Link>
       </p>
-    </>
+    </div>
   );
 };
 export default SignInPage;

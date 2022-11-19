@@ -10,28 +10,30 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const charactersPromise = useMemo(() => getCharacters(page), [page]);
   return (
-    <Suspense
-      fallback={
-        <>
-          <CharacterListSkeleton />
-          <PaginationSkeleton />
-        </>
-      }
-    >
-      <Await resolve={charactersPromise}>
-        {(promiseResult: Awaited<typeof charactersPromise>) => (
-          <div className="flex flex-col gap-2">
-            <CharacterList characters={promiseResult.results} />
-            <Pagination
-              setPage={setPage}
-              currentPage={page}
-              isNextPageExist={!!promiseResult.info.next}
-              isPrevPageExist={!!promiseResult.info.prev}
-            />
-          </div>
-        )}
-      </Await>
-    </Suspense>
+    <div className="flex flex-col gap-2">
+      <Suspense
+        fallback={
+          <>
+            <CharacterListSkeleton />
+            <PaginationSkeleton />
+          </>
+        }
+      >
+        <Await resolve={charactersPromise}>
+          {(promiseResult: Awaited<typeof charactersPromise>) => (
+            <>
+              <CharacterList characters={promiseResult.results} />
+              <Pagination
+                setPage={setPage}
+                currentPage={page}
+                isNextPageExist={!!promiseResult.info.next}
+                isPrevPageExist={!!promiseResult.info.prev}
+              />
+            </>
+          )}
+        </Await>
+      </Suspense>
+    </div>
   );
 };
 

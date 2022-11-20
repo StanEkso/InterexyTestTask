@@ -36,6 +36,19 @@ class AuthController {
       res.status(400).json({ status: 400, message: "Incorrect data" });
     }
   }
+
+  async refreshToken(
+    req: Request,
+    res: Response<AuthResponse | ErrorResponse>
+  ) {
+    const userInfo = req.user;
+    if (!userInfo) {
+      return res.status(403).json({ status: 403, message: "Forbidden" });
+    }
+
+    const accessToken = jwtService.createUserAccessToken(userInfo);
+    return res.status(200).json({ ...userInfo, accessToken });
+  }
 }
 
 export const authController = new AuthController();

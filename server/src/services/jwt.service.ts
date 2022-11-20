@@ -8,6 +8,16 @@ class JWTService {
     });
     return jwtToken;
   }
+
+  validateUserToken(token: string) {
+    try {
+      const decoded = jwt.verify(token, JWT_SECRET);
+      console.log(decoded);
+      return decoded as Omit<User, "password">;
+    } catch {
+      return null;
+    }
+  }
 }
 
 export const jwtService = new JWTService();

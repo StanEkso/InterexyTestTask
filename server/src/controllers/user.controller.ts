@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import { userService } from "../services/user.service";
 import { User } from "../db/entities/user";
+import { ErrorResponse } from "../types/responses/error.response";
 class UserController {
   async getUserById(
     req: Request<{ id: string }>,
-    res: Response<Omit<User, "password"> | { message: string }>
+    res: Response<Omit<User, "password"> | ErrorResponse>
   ) {
     try {
       const user = await userService.getUserById(req.params.id);
@@ -12,7 +13,7 @@ class UserController {
     } catch (error) {
       console.log(error);
 
-      return res.status(404).json({ message: "Not found" });
+      return res.status(404).json({ status: 404, message: "Not found" });
     }
   }
 

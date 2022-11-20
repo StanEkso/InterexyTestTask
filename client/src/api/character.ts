@@ -1,27 +1,17 @@
 import { Character } from "../types/character";
 import { Info } from "../types/info";
+import { createHTTPClient } from "./client";
 import { EXTERNAL_API_URL } from "./constants";
 
-export const getCharacters = async (page = 1): Promise<Info<Character[]>> => {
-  return new Promise((res) => {
-    const a = fetch(`${EXTERNAL_API_URL}/character/?page=${page}`).then((r) => {
-      if (r.status !== 200) throw new Error("Something went wrong!");
-      return r.json();
-    });
-    setTimeout(() => {
-      res(a);
-    }, 0);
-  });
-};
+const externalApiClient = createHTTPClient({
+  baseUrl: EXTERNAL_API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
-export const getCharacterById = async (id: number): Promise<Character> => {
-  return new Promise((res) => {
-    const a = fetch(`${EXTERNAL_API_URL}/character/${id}`).then((r) => {
-      if (r.status !== 200) throw new Error("Something went wrong!");
-      return r.json();
-    });
-    setTimeout(() => {
-      res(a);
-    }, 5000);
-  });
-};
+export const getCharacters = (page = 1) =>
+  externalApiClient.get<Info<Character[]>>(`/character?page=${page}`);
+
+export const getCharacterById = (id: number) =>
+  externalApiClient.get<Character>(`/character/${id}`);

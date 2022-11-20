@@ -1,30 +1,14 @@
 import { User, UserCreationDto, UserLoginDto } from "../types/auth";
+import { createHTTPClient } from "./client";
 import { API_URL } from "./constants";
+const internalApiClient = createHTTPClient({
+  baseUrl: API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+export const loginUser = (dto: UserLoginDto) =>
+  internalApiClient.post<User>("/auth/signin", dto);
 
-export const loginUser = (dto: UserLoginDto): Promise<User> =>
-  fetch(`${API_URL}/auth/signin`, {
-    method: "POST",
-    body: JSON.stringify(dto),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((r) => {
-    if (r.status !== 200) {
-      throw new Error("No user with listed data");
-    }
-    return r.json();
-  });
-
-export const createUser = (dto: UserCreationDto): Promise<User> =>
-  fetch(`${API_URL}/auth/signup`, {
-    method: "POST",
-    body: JSON.stringify(dto),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((r) => {
-    if (r.status !== 201) {
-      throw new Error("");
-    }
-    return r.json();
-  });
+export const createUser = (dto: UserCreationDto) =>
+  internalApiClient.post<User>("/auth/signup", dto);

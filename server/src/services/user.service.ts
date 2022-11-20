@@ -1,8 +1,8 @@
-import { UserCreateDto } from "../controllers/dto/user-create.dto";
+import { UserCreateDto } from "../types/dto/user-create.dto";
 import { mongoDataSource } from "../db";
 import { User } from "../db/entities/user";
 import bcrypt from "bcryptjs";
-import { UserLoginDto } from "../controllers/dto/user-login.dto";
+import { UserLoginDto } from "../types/dto/user-login.dto";
 import { ObjectID } from "mongodb";
 class UserService {
   userRepository = mongoDataSource.getRepository<User>(User);
@@ -13,7 +13,6 @@ class UserService {
     if (existingUser) throw new Error("User with this email exists!");
     const { password, ...user } = dto;
     const hashedPassword = await bcrypt.hash(password, 5);
-    console.log(password);
     const newUser = new User(user.email, hashedPassword, user.bio);
     return this.userRepository.save(newUser);
   }
@@ -22,7 +21,6 @@ class UserService {
     const existingUser = await this.userRepository.findOne({
       where: { email: dto.email },
     });
-    console.log(dto.password);
     const isPasswordsMatch = await bcrypt.compare(
       dto.password,
       existingUser?.password || ""

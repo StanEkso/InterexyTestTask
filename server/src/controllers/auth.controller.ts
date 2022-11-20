@@ -1,13 +1,12 @@
 import { Request, Response } from "express";
-import { UserLoginDto } from "./dto/user-login.dto";
+import { UserLoginDto } from "../types/dto/user-login.dto";
 import { userService } from "../services/user.service";
-import { UserCreateDto } from "./dto/user-create.dto";
+import { UserCreateDto } from "../types/dto/user-create.dto";
 import { jwtService } from "../services/jwt.service";
+import { AuthResponse } from "../types/responses/auth.response";
+import { ErrorResponse } from "../types/responses/error.response";
 class AuthController {
-  async loginUser(
-    req: Request<{}, { accessToken: string }, UserLoginDto>,
-    res: Response
-  ) {
+  async loginUser(req: Request<{}, AuthResponse, UserLoginDto>, res: Response) {
     const dto = req.body;
     try {
       const { password, ...user } = await userService.loginUser(dto);
@@ -22,8 +21,8 @@ class AuthController {
   }
 
   async createUser(
-    req: Request<{}, { accessToken: string }, UserCreateDto>,
-    res: Response
+    req: Request<{}, AuthResponse, UserCreateDto>,
+    res: Response<AuthResponse | ErrorResponse>
   ) {
     const dto = req.body;
     try {
@@ -34,7 +33,7 @@ class AuthController {
         accessToken,
       });
     } catch (error) {
-      res.status(400).json({ message: "Incorrect data" });
+      res.status(400).json({ status: 400, message: "Incorrect data" });
     }
   }
 }

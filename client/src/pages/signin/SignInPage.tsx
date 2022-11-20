@@ -13,6 +13,7 @@ const SignInPage = () => {
   } = useRemember("email");
   const { payload, changeHandler, setError } = useForm({
     email: rememberedValue,
+    password: "",
   });
   const { signin } = useAuthContext();
   const submitHandler = useCallback(() => {
@@ -35,6 +36,7 @@ const SignInPage = () => {
         {payload.error && <p className="text-red-500">{payload.error} </p>}
         <input
           type="email"
+          autoComplete="email"
           className="rounded-sm border-2 py-1 px-2"
           placeholder="Email"
           name="email"
@@ -43,6 +45,7 @@ const SignInPage = () => {
           onChange={changeHandler}
         />
         <input
+          autoComplete="current-password"
           type="password"
           className="rounded-sm border-2 py-1 px-2"
           onChange={changeHandler}

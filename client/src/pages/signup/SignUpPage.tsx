@@ -4,7 +4,11 @@ import { useAuthContext } from "../../components/AuthProvider/AuthContext";
 import useForm from "../../hooks/useForm";
 
 const SignUpPage = () => {
-  const { payload, changeHandler, setError } = useForm();
+  const { payload, changeHandler, setError } = useForm({
+    email: "",
+    password: "",
+    repeatPassword: "",
+  });
   const { signup } = useAuthContext();
   const submitHandler = useCallback(() => {
     const { email = "", password = "", bio = "", repeatPassword } = payload;
@@ -24,6 +28,7 @@ const SignUpPage = () => {
 
         <input
           type="email"
+          autoComplete="email"
           className="rounded-sm border-2 py-1 px-2"
           placeholder="Email"
           name="email"
@@ -32,6 +37,7 @@ const SignUpPage = () => {
         />
         <input
           type="password"
+          autoComplete="new-password"
           className="rounded-sm border-2 py-1 px-2"
           onChange={changeHandler}
           placeholder="Password"
@@ -39,6 +45,7 @@ const SignUpPage = () => {
           name="password"
         />
         <input
+          autoComplete="new-password"
           type="password"
           className="rounded-sm border-2 py-1 px-2"
           onChange={changeHandler}

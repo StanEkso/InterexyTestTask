@@ -1,10 +1,13 @@
 import shelljs from "shelljs";
 import fs from "fs";
-fs.readdir("./", (err, files) => {
-  if (err) console.log(err);
-  console.log(files);
+
+fs.mkdirSync("./dist");
+fs.mkdirSync("./dist/views");
+fs.readdir("./src/views/", (err, files) => {
+  files.forEach((value) =>
+    fs.copyFileSync(`./src/views/${value}`, `./dist/views/${value}`)
+  );
 });
-shelljs.cp("-r", "src/views", "dist");
 fs.readdir("dist/views", (err, files) => {
   if (err) console.log(err);
   console.log(files);

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "ts-node ./src/utils/copyAssets.ts && npx tsc",
+    "build": "npm run copy-assets && npx tsc",
     "pre-build": "rimraf dist",
     "copy-assets": "ts-node src/utils/copyAssets.ts",
     "start": "node dist/index.js",

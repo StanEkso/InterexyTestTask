@@ -6,7 +6,7 @@ import { notFoundMiddleware } from "./middleware/notfound.middleware";
 import path from "path";
 const app: Express = express();
 const PORT = process.env.PORT || 5000;
-app.set("views", path.join(__dirname, "views/"));
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(cors());

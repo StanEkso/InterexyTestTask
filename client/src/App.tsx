@@ -17,7 +17,7 @@ import NotFoundPage, { NotFoundRedirect } from "./pages/notfound/NotFoundPage";
 import SignInPage from "./pages/signin/SignInPage";
 import SignUpPage from "./pages/signup/SignUpPage";
 
-export const BASENAME = process.env.BASENAME || "";
+export const BASENAME = process.env.BASENAME || "/InterexyTestTask";
 
 const router = createBrowserRouter(
   [

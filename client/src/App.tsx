@@ -16,57 +16,65 @@ import HomePage from "./pages/home/HomePage";
 import NotFoundPage, { NotFoundRedirect } from "./pages/notfound/NotFoundPage";
 import SignInPage from "./pages/signin/SignInPage";
 import SignUpPage from "./pages/signup/SignUpPage";
-const router = createBrowserRouter([
+
+export const BASENAME = process.env.BASENAME || "";
+
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          index: true,
+          element: <HomePage />,
+        },
+        {
+          path: "/hero/:id",
+          errorElement: <NotFoundRedirect />,
+          element: <HeroDetailsPage />,
+          loader: heroDetailsLoader,
+        },
+        {
+          path: "/about",
+          element: (
+            <PrivateRoute>
+              <AboutUserPage />
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/signup",
+          element: (
+            <NonAuthOnly>
+              <SignUpPage />
+            </NonAuthOnly>
+          ),
+        },
+        {
+          path: "/signin",
+          element: (
+            <NonAuthOnly>
+              <SignInPage />
+            </NonAuthOnly>
+          ),
+        },
+        {
+          path: "/404",
+          element: <NotFoundPage />,
+        },
+        {
+          path: "*",
+          element: <Navigate to="/404" />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        path: "/",
-        index: true,
-        element: <HomePage />,
-      },
-      {
-        path: "/hero/:id",
-        errorElement: <NotFoundRedirect />,
-        element: <HeroDetailsPage />,
-        loader: heroDetailsLoader,
-      },
-      {
-        path: "/about",
-        element: (
-          <PrivateRoute>
-            <AboutUserPage />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/signup",
-        element: (
-          <NonAuthOnly>
-            <SignUpPage />
-          </NonAuthOnly>
-        ),
-      },
-      {
-        path: "/signin",
-        element: (
-          <NonAuthOnly>
-            <SignInPage />
-          </NonAuthOnly>
-        ),
-      },
-      {
-        path: "/404",
-        element: <NotFoundPage />,
-      },
-      {
-        path: "*",
-        element: <Navigate to="/404" />,
-      },
-    ],
-  },
-]);
+    basename: BASENAME,
+  }
+);
 const App = () => {
   return (
     <AuthProvider>

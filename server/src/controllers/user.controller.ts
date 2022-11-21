@@ -9,10 +9,12 @@ class UserController {
   ) {
     try {
       const user = await userService.getUserById(req.params.id);
-      return res.status(200).json(user);
+      return res.render("user", {
+        id: user.id,
+        email: user.email,
+        bio: user.bio,
+      });
     } catch (error) {
-      console.log(error);
-
       return res.status(404).json({ status: 404, message: "Not found" });
     }
   }

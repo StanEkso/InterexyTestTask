@@ -4,20 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc",
+    "build": "ts-node ./src/utils/copyAssets.ts && npx tsc",
+    "pre-build": "rimraf dist",
+    "copy-assets": "ts-node src/utils/copyAssets.ts",
     "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q ./dist/index.js\""
+    "dev": "npm run copy-assets && concurrently \"npx tsc --watch\" \"nodemon -q ./dist/index.js\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/shelljs": "^0.8.11",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "ejs": "^3.1.8",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.7.3",
+    "rimraf": "^3.0.2",
+    "shelljs": "^0.8.5",
     "typeorm": "^0.3.10"
   },
   "devDependencies": {
